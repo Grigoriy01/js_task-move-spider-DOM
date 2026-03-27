@@ -23,7 +23,7 @@ document.addEventListener('click', (e) => {
   // start & end the borders of Wall
   const startW = leftBorderWall; // + SpiderWidth / 2;
   const endW = leftBorderWall + wall.clientWidth;
-  const startH = topBorderWall + SpiderHeight / 2;
+  const startH = topBorderWall;
   const endH = topBorderWall + wall.clientHeight;
 
   if (currClickPosX < startW + SpiderWidth / 2) {
@@ -34,9 +34,9 @@ document.addEventListener('click', (e) => {
     spider.style.left = `${currClickPosX - leftBorderWall - SpiderWidth / 2}px`;
   }
 
-  if (currClickPosY < startH + SpiderWidth / 2) {
+  if (currClickPosY < startH + SpiderHeight / 2) {
     spider.style.top = 0 + 'px';
-  } else if (currClickPosY > endH - SpiderWidth / 2) {
+  } else if (currClickPosY > endH - SpiderHeight / 2) {
     spider.style.top = `${wall.clientHeight - SpiderHeight}px`;
   } else {
     spider.style.top = `${currClickPosY - topBorderWall - SpiderHeight / 2}px`;
