@@ -21,7 +21,7 @@ document.addEventListener('click', (e) => {
   const SpiderHeight = spider.offsetHeight;
 
   // start & end the borders of Wall
-  const startW = leftBorderWall; // + SpiderWidth / 2;
+  const startW = leftBorderWall;
   const endW = leftBorderWall + wall.clientWidth;
   const startH = topBorderWall;
   const endH = topBorderWall + wall.clientHeight;
