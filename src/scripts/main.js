@@ -4,35 +4,41 @@ document.addEventListener('click', (e) => {
   // write code here
   const wall = document.querySelector('.wall');
   const spider = document.querySelector('.spider');
-  const startCoordWallX = wall.getBoundingClientRect().x + wall.clientLeft;
-  const startCoordWallY = wall.getBoundingClientRect().y + wall.clientTop;
+
+  const leftBorderWall = wall.getBoundingClientRect().left + wall.clientLeft;
+  const topBorderWall = wall.getBoundingClientRect().top + wall.clientTop;
+
   const currClick = e.target.closest('.wall');
 
   if (!currClick) {
     return;
   }
 
-  const clickX = e.clientX;
-  const clickY = e.clientY;
+  const currClickPosX = e.clientX;
+  const currClickPosY = e.clientY;
 
-  const centerSpiderX = spider.offsetWidth / 2;
-  const centerSpiderY = spider.offsetHeight / 2;
+  const SpiderWidth = spider.offsetWidth;
+  const SpiderHeight = spider.offsetHeight;
 
-  const minW = startCoordWallX + centerSpiderX;
-  const maxW = startCoordWallX + wall.clientWidth + centerSpiderX;
-  const minH = startCoordWallY + centerSpiderY;
-  const maxH = startCoordWallY + wall.clientHeight + centerSpiderY;
+  // start & end the borders of Wall
+  const startW = leftBorderWall; // + SpiderWidth / 2;
+  const endW = leftBorderWall + wall.clientWidth;
+  const startH = topBorderWall + SpiderHeight / 2;
+  const endH = topBorderWall + wall.clientHeight;
 
-  if (clickX < minW) {
-    spider.style.left = `${minW}px`;
-  } else if (clickX > maxW) {
-    spider.style.left = `${maxW}px`;
-  } else if (clickY < minH) {
-    spider.style.top = `${minH}px`;
-  } else if (clickY > maxH) {
-    spider.style.top = `${maxH}px`;
+  if (currClickPosX < startW + SpiderWidth / 2) {
+    spider.style.left = 0 + 'px';
+  } else if (currClickPosX > endW - SpiderWidth / 2) {
+    spider.style.left = `${wall.clientWidth - SpiderWidth}px`;
   } else {
-    spider.style.top = `${clickY - startCoordWallY - centerSpiderY}px`;
-    spider.style.left = `${clickX - startCoordWallX - centerSpiderX}px`;
+    spider.style.left = `${currClickPosX - leftBorderWall - SpiderWidth / 2}px`;
+  }
+
+  if (currClickPosY < startH + SpiderWidth / 2) {
+    spider.style.top = 0 + 'px';
+  } else if (currClickPosY > endH - SpiderWidth / 2) {
+    spider.style.top = `${wall.clientHeight - SpiderHeight}px`;
+  } else {
+    spider.style.top = `${currClickPosY - topBorderWall - SpiderHeight / 2}px`;
   }
 });
