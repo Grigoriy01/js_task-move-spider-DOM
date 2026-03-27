@@ -23,6 +23,7 @@ document.addEventListener('click', (e) => {
   // start & end the borders of Wall
   const startW = leftBorderWall;
   const endW = leftBorderWall + wall.clientWidth;
+
   const startH = topBorderWall;
   const endH = topBorderWall + wall.clientHeight;
 
